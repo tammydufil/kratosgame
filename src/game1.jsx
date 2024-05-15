@@ -7,9 +7,9 @@ export const Game1 = () => {
         <Navbar></Navbar>
         <body>
             <div>
-            <a href="">
+            {/* <a href="">
             <img src="assets/images/gif1.gif" alt="loading" />
-            </a>
+            </a> */}
             </div>
           
         </body>

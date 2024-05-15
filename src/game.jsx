@@ -1,20 +1,27 @@
-import React from 'react'
-import { Navbar } from './components/navbar'
-import { Footer } from './components/footer'
+import React from "react";
+import { Navbar } from "./components/navbar";
+import { Footer } from "./components/footer";
 
 export const Game = () => {
   return (
     <div>
-        <div>
-            <Navbar></Navbar>
+      <div>
+        <Navbar></Navbar>
         {/* inner hero section start */}
-        <section className="inner-banner bg_img" style={{background: 'url("assets/images/inner-banner/bg2.jpg") top'}}>
+        <section
+          className="inner-banner bg_img"
+          style={{
+            background: 'url("assets/images/inner-banner/bg2.jpg") top',
+          }}
+        >
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-7 col-xl-6 text-center">
                 <h2 className="title text-white">Games</h2>
                 <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
-                  <li><a href="index.html">Home</a></li>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
                   <li>Games</li>
                 </ul>
               </div>
@@ -23,7 +30,10 @@ export const Game = () => {
         </section>
         {/* inner hero section end */}
         {/* Game Section Starts Here */}
-        <section className="game-section padding-top padding-bottom bg_img" style={{background: 'url(assets/images/game/bg3.jpg)'}}>
+        <section
+          className="game-section padding-top padding-bottom bg_img"
+          style={{ background: "url(assets/images/game/bg3.jpg)" }}
+        >
           <div className="container">
             <div className="row gy-4 justify-content-center">
               <div className="col-lg-4 col-xl-3 col-md-6 col-sm-6">
@@ -36,7 +46,12 @@ export const Game = () => {
                       <h4 className="title">Roulette</h4>
                       <p className="invest-info">Invest Limit</p>
                       <p className="invest-amount">$10.49 - $1,000</p>
-                      <a href="#0" className="cmn--btn active btn--md radius-0">Play Now</a>
+                      <a
+                        href="game1"
+                        className="cmn--btn active btn--md radius-0"
+                      >
+                        Play Now
+                      </a>
                     </div>
                   </div>
                   <div className="ball" />
@@ -52,53 +67,43 @@ export const Game = () => {
                       <h4 className="title">Zero To Ninty</h4>
                       <p className="invest-info">Invest Limit</p>
                       <p className="invest-amount">$10.49 - $1,000</p>
-                      <a href="#0" className="cmn--btn active btn--md radius-0">Play Now</a>
+                      <a href="#0" className="cmn--btn active btn--md radius-0">
+                        Play Now
+                      </a>
                     </div>
                   </div>
                   <div className="ball" />
                 </div>
               </div>
-              
-              
-              
-            <div>
-              <div>
-              </div>
-          
-              </div>
-              
-    
-            <div>
-                <div>
-                  <div className="ball" />
-                </div>
-              </div>
-              <div >
-                <div >
-            <div>
 
-                  </div>
-                  <div className="ball" />
-                </div>
+              <div>
+                <div></div>
               </div>
-              <div >
+
+              <div>
                 <div>
-                
-                  <div>
-            
-                  </div>
                   <div className="ball" />
                 </div>
               </div>
-            <div>
+              <div>
+                <div>
+                  <div></div>
+                  <div className="ball" />
+                </div>
               </div>
+              <div>
+                <div>
+                  <div></div>
+                  <div className="ball" />
+                </div>
+              </div>
+              <div></div>
             </div>
-        
           </div>
         </section>
         {/* Game Section Ends Here */}
         {/* Footer Section Starts Here */}
-       <Footer></Footer>
+        <Footer></Footer>
         {/* Footer Section Ends Here */}
         {/* jQuery library */}
         {/* bootstrap 5 js */}
@@ -106,5 +111,5 @@ export const Game = () => {
         {/* main js */}
       </div>
     </div>
-  )
-}
+  );
+};
