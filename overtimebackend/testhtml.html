@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Overtime Request for Approval</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      "
+    >
+      <img
+        src="https://images2.imgbox.com/37/39/oic8SOf6_o.png"
+        alt="Dufil Prima Foods Ltd. Logo"
+        style="width: 100px"
+      />
+      <p>
+        Dear ${overtimeData?.requestfirstname} ${overtimeData?.requestlastname},
+      </p>
+      <p>
+        This is an automated message to inform you that the status of your
+        overtime request has been updated by ${overtimeData?.firstapprovalname}.
+      </p>
+      <p>
+        You can review and approve the request by clicking the button below:
+      </p>
+      <p>
+        <a
+          href="http://localhost:3000"
+          target="_blank"
+          style="
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 3px;
+          "
+          >Review Request</a
+        >
+      </p>
+      <p>Thank you for your attention to this matter.</p>
+      <p>Sincerely,</p>
+      <p>Dufil Prima foods ltd.</p>
+    </div>
+  </body>
+</html>

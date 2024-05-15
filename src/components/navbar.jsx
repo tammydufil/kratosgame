@@ -37,7 +37,7 @@ export const Navbar = () => {
                   </a>
                 </li>
                 <li className="">
-                  <a href="">Finance</a>
+                  <a>Finance</a>
                   <ul className="sub-menu">
                     <li>
                       <a href="deposit">Deposit</a>
@@ -52,14 +52,18 @@ export const Navbar = () => {
                   <hr className="d-lg-none" />
                 </li>
                 <li>
-                  <a href="">Account</a>
+                  <a>Account</a>
                   <ul className="sub-menu">
                     <li>
-                      <a href="sign-up">Sign-Up</a>
+                      <a href="profile">Profile</a>
                     </li>
                     <li>
                       <a href="sign-in">Sign-In</a>
                     </li>
+                    <li>
+                      <a href="sign-up">Sign-Up</a>
+                    </li>
+
                     <li>
                       <a href="logout">Logout</a>
                     </li>

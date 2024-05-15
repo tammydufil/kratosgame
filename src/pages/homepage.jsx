@@ -6,7 +6,7 @@ export const Homepage = () => {
   return (
     <div>
       <Navbar></Navbar>
-      {/* Banner Section Starts Here */}{" "}
+
       <section
         class="banner-section bg_img overflow-hidden"
         style={{ background: "url(assets/images/banner/bg.png) center" }}
@@ -15,8 +15,8 @@ export const Homepage = () => {
           <div class="banner-wrapper lg:flex md:px-2 lg:-mt-[60px] items-center justify-center">
             <div class="banner-content ">
               <h1 class="banner-content__title lg:leading-7 mb-[60px]">
-                Playyyy <span class="text--base">Online Casino</span> & Win
-                Moneyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy Unlimited
+                Playy <span class="text--base">Online Casino</span> & Win
+                MoneyUnlimited
               </h1>
               <p class="banner-content__subtitle ">
                 PLAY CASINO AND EARN CRYPTO IN ONLINE. THE ULTIMATE ONLINE

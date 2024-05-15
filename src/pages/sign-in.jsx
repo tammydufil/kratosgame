@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Login = () => {
-  const [username, setUsername] = useState(" ");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
+  const notify = () => toast(toastMessage);
 
-  const handleSubmit = (event) => {
-    // Prevent default form submission
-    event.preventDefault();
-    console.log("Name:", username);
+  useEffect(() => {
+    if (toastMessage !== "") {
+      notify();
+    }
+  }, [toastMessage]);
+
+  const handleSubmit = () => {
+    try {
+      if (!username) {
+        throw new Error("Username is required");
+      }
+      if (!password) {
+        throw new Error("Password is required");
+      }
+    } catch (error) {
+      setToastMessage(error.message);
+    }
   };
 
   return (
@@ -17,16 +34,19 @@ export const Login = () => {
       <div>
         <Navbar></Navbar>
         {/* inner hero section start */}
+
         <section
           className="inner-banner bg_img"
           style={{
-            background: 'url("assets/images/inner-banner/bg2.jpg") top',
+            background:
+              'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4)), url("assets/images/inner-banner/bg2.jpg") top',
           }}
         >
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-7 col-xl-6 text-center">
-                <h2 className="title text-white">Sign In</h2>
+                <h2 className="title text-white text-3xl uppercase">Sign In</h2>
+
                 <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
                   <li>
                     <a href="/">Home</a>
@@ -40,7 +60,7 @@ export const Login = () => {
         {/* inner hero section end */}
         {/* Account Section Starts Here */}
         <section
-          className="account-section overflow-hidden bg_img"
+          className="account-section overflow-hidden bg_img bg-[#e8e8e890]"
           style={{ background: "url(assets/images/account/bg.jpg)" }}
         >
           <div className="container">
@@ -48,14 +68,22 @@ export const Login = () => {
               <div className="account__form__wrapper">
                 <div className="logo">
                   <a href="/">
-                    <img src="assets/images/logo.png" alt="logo" />
+                    <img src="assets/images/horuslogo.png" alt="logo" />
                   </a>
                 </div>
-                <form className="account__form form row g-4">
+                <form
+                  className="account__form form row g-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
                   <div className="col-12">
                     <div className="form-group">
-                      <div htmlFor="username" className="input-pre-icon">
-                        <i className="las la-user" />
+                      <div
+                        htmlFor="username"
+                        className="input-pre-icon bg-[#000000c4] border-none"
+                      >
+                        <i className="las la-user text-2xl " />
                       </div>
                       <input
                         id="username"
@@ -72,14 +100,21 @@ export const Login = () => {
                   </div>
                   <div className="col-12">
                     <div className="form-group">
-                      <div htmlFor="pass" className="input-pre-icon">
-                        <i className="las la-lock" />
+                      <div
+                        htmlFor="pass"
+                        className="input-pre-icon bg-[#000000c4] border-none"
+                      >
+                        <i className="las la-lock text-2xl" />
                       </div>
                       <input
                         id="pass"
                         type="password"
                         className="form--control form-control style--two"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                         required
                       />
                     </div>
@@ -88,49 +123,28 @@ export const Login = () => {
                     <div className="form-group">
                       <button
                         className="cmn--btn active w-100 btn--round"
-                        type="submit"
+                        onClick={() => {
+                          handleSubmit();
+                        }}
                       >
                         Sign In
                       </button>
                     </div>
                   </div>
-                  <div className="d-flex flex-wrap flex-sm-nowrap justify-content-between mt-5">
-                    <div className="form--check d-flex align-items-center">
-                      <input id="check1" type="checkbox" defaultChecked />
-                      <label htmlFor="check1">Remember me</label>
-                    </div>
+                  <div className="d-flex flex-wrap flex-sm-nowrap justify-content-between mt-3 ml-2">
                     <a href="#0" className="forgot-pass d-block text--base">
                       Forgot Password ?
                     </a>
                   </div>
                 </form>
               </div>
-              <div className="account__content__wrapper">
-                <div className="content text-center text-white">
-                  <h3 className="title text--base mb-4">Welcome to Casinio</h3>
-                  <p className>
-                    Sign in your Account. Atque, fuga sapiente, doloribus qui
-                    enim tempora?
-                  </p>
-                  <p className="account-switch mt-4">
-                    Don't have an Account yet ?{" "}
-                    <a className="text--base ms-2" href="sign-up">
-                      Sign Up
-                    </a>
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
-        {/* Account Section Ends Here */}
-        {/* Footer Section Starts Here */}
+
+        <ToastContainer />
+
         <Footer></Footer>
-        {/* Footer Section Ends Here */}
-        {/* jQuery library */}
-        {/* bootstrap 5 js */}
-        {/* Pluglin Link */}
-        {/* main js */}
       </div>
     </div>
   );
