@@ -55,6 +55,10 @@ export const Signuppage = () => {
       if (!lastname) {
         throw new Error("Last name is required");
       }
+
+      if (phonenumber.length < 10) {
+        throw new Error("Phone number is invalid");
+      }
       if (!phonenumber) {
         throw new Error("Phone number is required");
       }
