@@ -18,7 +18,9 @@ export const Signuppage = () => {
 
   useEffect(() => {
     if (toastMessage !== "") {
+      console.log(toastMessage);
       notify();
+      setToastMessage("");
     }
   }, [toastMessage]);
 
@@ -33,15 +35,17 @@ export const Signuppage = () => {
     const numberRegex = /\d/;
 
     // Check if the password meets all the criteria
-    const isAlphanumeric = alphanumericRegex.test(password);
+    // const isAlphanumeric = alphanumericRegex.test(password);
     const hasSymbol = symbolRegex.test(password);
     const hasNumber = numberRegex.test(password);
 
     // Check for space
     const hasSpace = password.includes(" ");
 
+    console.log(hasSymbol, hasNumber);
+
     // Return true if all conditions are met, false otherwise
-    return isAlphanumeric && hasSymbol && hasNumber && !hasSpace;
+    return hasSymbol && hasNumber && !hasSpace;
   }
 
   const handleSubmit = () => {
@@ -56,7 +60,7 @@ export const Signuppage = () => {
         throw new Error("Last name is required");
       }
 
-      if (phonenumber.length < 10) {
+      if (phonenumber.length === 10) {
         throw new Error("Phone number is invalid");
       }
       if (!phonenumber) {
@@ -69,6 +73,8 @@ export const Signuppage = () => {
         throw new Error("Password is required");
       }
 
+      console.log(validatePassword(password));
+
       if (!validatePassword(password)) {
         throw new Error(
           "The password should be at least 6 characters long and must contain a symbol, a number, and no spaces. For example, (Abcder444&&) "
@@ -79,6 +85,7 @@ export const Signuppage = () => {
       }
       alert("You passed");
     } catch (error) {
+      console.log(error);
       setToastMessage(error.message);
     }
   };
@@ -140,7 +147,7 @@ export const Signuppage = () => {
                       placeholder="Frist Name"
                       value={firstname}
                       onChange={(e) => {
-                        setFirstname(e.preventDefault());
+                        setFirstname(e.target.value);
                       }}
                       required
                     />
@@ -158,7 +165,7 @@ export const Signuppage = () => {
                       placeholder="Last Name"
                       value={lastname}
                       onChange={(e) => {
-                        setLastname(e.preventDefault());
+                        setLastname(e.target.value);
                       }}
                       required
                     />
