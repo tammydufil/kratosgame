@@ -10,6 +10,10 @@ import { Game } from './game';
 import { Withdraw } from './withdraw';
 import { Deposit } from './deposit';
 import { Game1 } from './game1';
+import { Terms } from './terms';
+import { Transaction } from './transaction';
+import { Profile } from './profile';
+import { Changepassword } from './changepassword';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +31,10 @@ function App() {
       <Route path ="/deposit" element={<Deposit></Deposit>} ></Route>
       <Route path ="/withdraw" element={<Withdraw></Withdraw>} ></Route>
       <Route path ="/game1" element={<Game1></Game1>} ></Route>
+      <Route path ="/terms" element={<Terms></Terms>} ></Route>
+      <Route path ="/transaction" element={<Transaction></Transaction>} ></Route>
+      <Route path ="/profile" element={<Profile></Profile>} ></Route>
+      <Route path ="/changepassword" element={<Changepassword></Changepassword>} ></Route>
     </Routes>
   </BrowserRouter>
   )

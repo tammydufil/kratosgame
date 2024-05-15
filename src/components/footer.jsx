@@ -46,7 +46,7 @@ export const Footer = () => {
                     <a href="game">Game</a>
                   </li>
                   <li>
-                    <a href="terms-conditions">Terms &amp; Conditions</a>
+                    <a href="terms">Terms &amp; Conditions</a>
                   </li>
                   <li>
                     <a href="policy">Privacy Policy</a>
@@ -67,7 +67,7 @@ export const Footer = () => {
               <div className="footer-wrapper d-flex flex-wrap justify-content-center align-items-center text-center">
                 <p className="copyright text-white">
                   Copyrights © 2024 All Rights Reserved by
-                  <a href="#0" className=" text--base ms-2">
+                  <a href="/" className=" text--base ms-2">
                     Kratosgame
                   </a>
                 </p>

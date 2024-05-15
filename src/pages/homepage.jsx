@@ -15,18 +15,18 @@ export const Homepage = () => {
           <div class="banner-wrapper lg:flex md:px-2 lg:-mt-[60px] items-center justify-center">
             <div class="banner-content ">
               <h1 class="banner-content__title lg:leading-7 mb-[60px]">
-                Playyyy <span class="text--base">Online Casino</span> & Win
-                Moneyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy Unlimited
+                Play <span class="text--base">Online Casino</span> & Win
+                Money Unlimited
               </h1>
               <p class="banner-content__subtitle ">
                 PLAY CASINO AND EARN CRYPTO IN ONLINE. THE ULTIMATE ONLINE
                 CASINO PLATFORM.
               </p>
               <div class="button-wrapper">
-                <a href="#" class="cmn--btn active btn--lg">
+                <a href="sign-in" class="cmn--btn active btn--lg">
                   <i class="las la-play"></i> Play Now
                 </a>
-                <a href="sign-up.html" class="cmn--btn btn--lg">
+                <a href="sign-up" class="cmn--btn btn--lg">
                   Sign Up
                 </a>
               </div>
@@ -73,7 +73,7 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                  <h4 className="title">Sign Up First &amp; Login</h4>
+                  <a href="sign-up"><h4 className="title">Sign Up First &amp; Login</h4></a>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                  <h4 className="title">Complete you Profile</h4>
+                  <a href="profile"><h4 className="title">Complete you Profile</h4></a>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                  <h4 className="title">Choose a Game &amp; Play</h4>
+                <a href="game"> <h4 className="title">Game room</h4></a>
                 </div>
               </div>
             </div>
