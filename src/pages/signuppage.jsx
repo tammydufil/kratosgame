@@ -270,7 +270,6 @@ export const Signuppage = () => {
                   <div className="form-group">
                     <button
                       className="cmn--btn active w-100 btn--round"
-                      type="submit"
                       onClick={() => {
                         handleSubmit();
                       }}
