@@ -283,15 +283,10 @@ export const Signuppage = () => {
           </div>
         </div>
       </section>
-      {/* Account Section Ends Here */}
-      {/* Footer Section Starts Here */}
+      <ToastContainer />
 
       <Footer></Footer>
       {/* Footer Section Ends Here */}
-      {/* jQuery library */}
-      {/* bootstrap 5 js */}
-      {/* Pluglin Link */}
-      {/* main js */}
     </div>
   );
 };
