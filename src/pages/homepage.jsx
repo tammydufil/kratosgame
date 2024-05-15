@@ -16,7 +16,7 @@ export const Homepage = () => {
             <div class="banner-content ">
               <h1 class="banner-content__title lg:leading-7 mb-[60px]">
                 Playyyy <span class="text--base">Online Casino</span> & Win
-                Money Unlimited
+                Moneyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy Unlimited
               </h1>
               <p class="banner-content__subtitle ">
                 PLAY CASINO AND EARN CRYPTO IN ONLINE. THE ULTIMATE ONLINE
