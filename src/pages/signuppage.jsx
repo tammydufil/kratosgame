@@ -1,21 +1,99 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Signuppage = () => {
   const [username, setusername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [country, setCountry] = useState("Nigeria");
+  const [phonenumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+
+  const [toastMessage, setToastMessage] = useState("");
+  const notify = () => toast(toastMessage);
+
+  useEffect(() => {
+    if (toastMessage !== "") {
+      notify();
+    }
+  }, [toastMessage]);
+
+  function validatePassword(password) {
+    // Regular expression to check if password has at least 7 alphanumerics
+    const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}$/;
+
+    // Regular expression to check if password contains a symbol
+    const symbolRegex = /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/;
+
+    // Regular expression to check if password contains a number
+    const numberRegex = /\d/;
+
+    // Check if the password meets all the criteria
+    const isAlphanumeric = alphanumericRegex.test(password);
+    const hasSymbol = symbolRegex.test(password);
+    const hasNumber = numberRegex.test(password);
+
+    // Check for space
+    const hasSpace = password.includes(" ");
+
+    // Return true if all conditions are met, false otherwise
+    return isAlphanumeric && hasSymbol && hasNumber && !hasSpace;
+  }
+
+  const handleSubmit = () => {
+    try {
+      if (!username) {
+        throw new Error("Username is required");
+      }
+      if (!firstname) {
+        throw new Error("First name is required");
+      }
+      if (!lastname) {
+        throw new Error("Last name is required");
+      }
+      if (!phonenumber) {
+        throw new Error("Phone number is required");
+      }
+      if (!email) {
+        throw new Error("Email is required");
+      }
+      if (!password) {
+        throw new Error("Password is required");
+      }
+
+      if (!validatePassword(password)) {
+        throw new Error(
+          "The password should be at least 6 characters long and must contain a symbol, a number, and no spaces. For example, (Abcder444&&) "
+        );
+      }
+      if (password !== confirmpassword) {
+        throw new Error("Passwords do not match");
+      }
+      alert("You passed");
+    } catch (error) {
+      setToastMessage(error.message);
+    }
+  };
+
   return (
     <div>
       <Navbar></Navbar>
       {/* inner hero section start */}
       <section
         className="inner-banner bg_img"
-        style={{ background: 'url("assets/images/inner-banner/bg2.jpg") top' }}
+        style={{
+          background:
+            'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4)), url("assets/images/inner-banner/bg2.jpg") top',
+        }}
       >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-7 col-xl-6 text-center">
-              <h2 className="title text-white">Sign Up</h2>
+              <h2 className="title text-white text-3xl uppercase">Sign Up</h2>
               <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
                 <li>
                   <a href="/">Home</a>
@@ -37,10 +115,15 @@ export const Signuppage = () => {
             <div className="account__form__wrapper sign-up">
               <div className="logo">
                 <a href="/">
-                  <img src="assets/images/logo.png" alt="logo" />
+                  <img src="assets/images/horuslogo.png" alt="logo" />
                 </a>
               </div>
-              <form className="account__form form row g-4">
+              <form
+                className="account__form form row g-4"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="fname" className="input-pre-icon">
@@ -51,6 +134,10 @@ export const Signuppage = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Frist Name"
+                      value={firstname}
+                      onChange={(e) => {
+                        setFirstname(e.preventDefault());
+                      }}
                       required
                     />
                   </div>
@@ -65,6 +152,10 @@ export const Signuppage = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Last Name"
+                      value={lastname}
+                      onChange={(e) => {
+                        setLastname(e.preventDefault());
+                      }}
                       required
                     />
                   </div>
@@ -75,21 +166,27 @@ export const Signuppage = () => {
                       <i className="las la-globe" />
                     </div>
                     <select className="form-select form--control style--two">
-                      <option>Bangladesh</option>
-                      <option>India</option>
-                      <option>Pakistan</option>
+                      <option>Nigeria</option>
+                      {/* <option>Kenya</option>
+                      <option>South Africa</option>
+                      <option>Ghana</option>
+                      <option>Uganda</option> */}
                     </select>
                   </div>
                 </div>
                 <div className="col-xl-6 col-md-6">
                   <div className="input-group">
                     <span className="input-group-text text--base style--two">
-                      +80
+                      +234
                     </span>
                     <input
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Phone Number"
+                      value={phonenumber}
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                      }}
                     />
                   </div>
                 </div>
@@ -103,6 +200,10 @@ export const Signuppage = () => {
                       type="email"
                       className="form--control form-control style--two"
                       placeholder="Email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                       required
                     />
                   </div>
@@ -117,6 +218,10 @@ export const Signuppage = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Username"
+                      value={username}
+                      onChange={(e) => {
+                        setusername(e.target.value);
+                      }}
                       required
                     />
                   </div>
@@ -131,6 +236,10 @@ export const Signuppage = () => {
                       type="password"
                       className="form--control form-control style--two"
                       placeholder="Password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
                       required
                     />
                   </div>
@@ -145,6 +254,10 @@ export const Signuppage = () => {
                       type="password"
                       className="form--control form-control style--two"
                       placeholder="Confirm Password"
+                      value={confirmpassword}
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                      }}
                       required
                     />
                   </div>
@@ -154,27 +267,15 @@ export const Signuppage = () => {
                     <button
                       className="cmn--btn active w-100 btn--round"
                       type="submit"
+                      onClick={() => {
+                        handleSubmit();
+                      }}
                     >
                       Sign Up
                     </button>
                   </div>
                 </div>
               </form>
-            </div>
-            <div className="account__content__wrapper">
-              <div className="content text-center text-white">
-                <h3 className="title text--base mb-4">Welcome to Casinio</h3>
-                <p className>
-                  Sign in your Account. Atque, fuga sapiente, doloribus qui enim
-                  tempora?
-                </p>
-                <p className="account-switch mt-4">
-                  Already have an Account ?{" "}
-                  <a className="text--base ms-2" href="sign-in">
-                    Sign In
-                  </a>
-                </p>
-              </div>
             </div>
           </div>
         </div>

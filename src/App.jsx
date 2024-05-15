@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css'
 import { Homepage } from './pages/homepage'
@@ -14,9 +14,10 @@ import { Terms } from './terms';
 import { Transaction } from './transaction';
 import { Profile } from './profile';
 import { Changepassword } from './changepassword';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     
@@ -40,4 +41,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

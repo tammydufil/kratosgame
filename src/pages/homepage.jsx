@@ -6,7 +6,7 @@ export const Homepage = () => {
   return (
     <div>
       <Navbar></Navbar>
-      {/* Banner Section Starts Here */}{" "}
+
       <section
         class="banner-section bg_img overflow-hidden"
         style={{ background: "url(assets/images/banner/bg.png) center" }}
@@ -15,8 +15,8 @@ export const Homepage = () => {
           <div class="banner-wrapper lg:flex md:px-2 lg:-mt-[60px] items-center justify-center">
             <div class="banner-content ">
               <h1 class="banner-content__title lg:leading-7 mb-[60px]">
-                Play <span class="text--base">Online Casino</span> & Win
-                Money Unlimited
+                Play <span class="text--base">Online Casino</span> & Win Money
+                Unlimited
               </h1>
               <p class="banner-content__subtitle ">
                 PLAY CASINO AND EARN CRYPTO IN ONLINE. THE ULTIMATE ONLINE
@@ -73,7 +73,9 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                  <a href="sign-up"><h4 className="title">Sign Up First &amp; Login</h4></a>
+                  <a href="sign-up">
+                    <h4 className="title">Sign Up First &amp; Login</h4>
+                  </a>
                 </div>
               </div>
             </div>
@@ -86,7 +88,9 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                  <a href="profile"><h4 className="title">Complete you Profile</h4></a>
+                  <a href="profile">
+                    <h4 className="title">Complete you Profile</h4>
+                  </a>
                 </div>
               </div>
             </div>
@@ -99,7 +103,10 @@ export const Homepage = () => {
                   </div>
                 </div>
                 <div className="how-item__content">
-                <a href="game"> <h4 className="title">Game room</h4></a>
+                  <a href="game">
+                    {" "}
+                    <h4 className="title">Game room</h4>
+                  </a>
                 </div>
               </div>
             </div>
