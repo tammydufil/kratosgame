@@ -1,123 +1,146 @@
-import React from 'react'
-import { Footer } from './components/footer'
-import { Navbar } from './components/navbar'
+import React from "react";
+import { Footer } from "./components/footer";
+import { Navbar } from "./components/navbar";
 
 export const Profile = () => {
   return (
     <div>
-        <div>
-            <Navbar></Navbar>
+      <div>
+        <Navbar></Navbar>
         {/* inner hero section start */}
-        <section className="inner-banner bg_img" style={{background: 'url("assets/images/inner-banner/bg2.jpg") top'}}>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-7 col-xl-6 text-center">
-                <h2 className="title text-white">Profile</h2>
-                <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
-                  <li><a href="/">Home</a></li>
-                  <li>Profile</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* inner hero section end */}
-        {/* Profile Section Starts Here */}
-        <section className="profile-section padding-top padding-bottom">
-          <div className="container">
-            <div className="profile-edit-wrapper">
-              <div className="row gy-5">
-                <div className="col-xl-4">
-                  <div className="profile__thumb__edit text-center custom--card">
-                    <div className="card--body">
-                      <div className="thumb">
-                        <img src="assets/images/user1.png" alt="testimonial" />
-                      </div>
-                      <div className="profile__info">
-                        <h4 className="name">Demo User</h4>
-                        <p className="username">@demouser123</p>
-                        <input type="file" className="form-control d-none " id="update-photo" />
-                        <label className="cmn--btn active btn--md mt-3" htmlFor="update-photo">Update Profile Picture</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-8">
-                  <div className="custom--card card--lg">
-                    <div className="card--body">
-                      <div className="row gy-3">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="fname" className="form-label">First Name</label>
-                            <input id="fname" type="text" className="form-control form--control style-two " placeholder="testuser" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="lname" className="form-label">Last Name</label>
-                            <input id="lname" type="text" className="form-control form--control style-two " placeholder="testuser" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="uname" className="form-label">Username</label>
-                            <input id="text" type="uname" className="form-control form--control style-two " placeholder="testuser" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email Address</label>
-                            <input id="email" type="email" className="form-control form--control style-two " placeholder="testuser@gmail.com" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="country" className="form-label">Country</label>
-                            <select name id className="form-select form--select form--control style-two">
-                              <option value>Bangladesh</option>
-                              <option value>India</option>
-                              <option value>English</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="number" className="form-label">Phone Number</label>
-                            <div className="input-group">
-                              <span className="input-group-text text--base">+192</span>
-                              <input id="number" type="tel" className="form-control form--control style-two " placeholder="ex. +09 3195 1452" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="addr" className="form-label">Address</label>
-                            <input id="addr" type="text" className="form-control form--control style-two " placeholder="Uttara" />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="zip" className="form-label">Zip Code</label>
-                            <input id="zip" type="text" className="form-control form--control style-two " placeholder={1230} />
-                          </div>
-                        </div>
-                        <div className="col-12">
-                          <div className="form-group">
-                            <label className="form-label" htmlFor="about">About You</label>
-                            <textarea className="form-control form--control style-two pt-3" placeholder="I'm a Front-end Web Developer. ...." defaultValue={""} />
-                          </div>
-                        </div>
-                        <div className="col">
-                          <button className="cmn--btn active mt-3">Update Profile</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="">
+          <section
+            className="inner-banner bg_img"
+            style={{
+              background:
+                'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4)), url("assets/images/inner-banner/bg2.jpg") top',
+            }}
+          >
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-7 col-xl-6 text-center">
+                  <h2 className="title text-white text-3xl">Profile</h2>
+                  <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
+                    <li>
+                      <a href="/">Home</a>
+                    </li>
+                    <li>Profile</li>
+                  </ul>
                 </div>
               </div>
             </div>
+          </section>
+          {/* inner hero section end */}
+          {/* Profile Section Starts Here */}
+
+          <div className="bg-[#00000082] flex justify-center !py-[50px] ">
+            <div className="bg-slate-300 text-black rounded-xl py-4 px-3 shadow-xl min-w-[350px]">
+              <div className="flex justify-center">
+                <img
+                  src="/assets/images/boy.png"
+                  className="w-[140px] mb-4 shadow-xl py-2 rounded-lg px-3"
+                  alt=""
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-y-3 gap-x-5">
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    First Name
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="John"
+                    required
+                    // disabled
+                    // value={username}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    Last Name
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="Ebere"
+                    required
+                    // disabled
+                    // value={username}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    Country
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="Nigeria"
+                    required
+                    // disabled
+                    // value={username}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    Phone Number
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="091388388383"
+                    required
+                    // disabled
+                    // value={username}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    Username
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="John239"
+                    required
+                    disabled
+                    // value={username}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="" className="text-base">
+                    Email
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form--control mt-[5px] rounded-xl form-control text-black bg-[black] border-[2px] disabled:bg-black disabled:text-white  border-purple-200 focus:bg-black focus:shadow-2xl"
+                    placeholder="John@gmail.com"
+                    required
+                    disabled
+                    // value={username}
+                  />
+                </div>
+              </div>
+              <div className="form-group mt-4">
+                <button
+                  className="cmn--btn active w-100 btn--round"
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
+                  Update details
+                </button>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
         {/* Profile Section Ends Here */}
         {/* Footer Section Starts Here */}
         <Footer></Footer>
@@ -128,5 +151,5 @@ export const Profile = () => {
         {/* main js */}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,17 +1,10 @@
 {
   "development": {
-    "username": "sa",
-    "password": "Adegboyega1",
-    "database": "overtimeapp",
-    "dialect": "mssql", 
-    "port": 59742
-  },
-  "development2": {
-    "username": "sa",
-    "password": "Adegboyega1",
-    "database": "iou",
-    "dialect": "mssql", 
-    "port": 59742
+    "username": "root",
+    "password": "",
+    "database": "kratosgame",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

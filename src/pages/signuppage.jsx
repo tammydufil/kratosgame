@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export const Signuppage = () => {
   const [username, setusername] = useState("");
@@ -12,6 +13,7 @@ export const Signuppage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [toastMessage, setToastMessage] = useState("");
   const notify = () => toast(toastMessage);
@@ -48,8 +50,9 @@ export const Signuppage = () => {
     return hasSymbol && hasNumber && !hasSpace;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
+      setLoading(true);
       if (!username) {
         throw new Error("Username is required");
       }
@@ -60,7 +63,7 @@ export const Signuppage = () => {
         throw new Error("Last name is required");
       }
 
-      if (phonenumber.length === 10) {
+      if (phonenumber.length !== 10) {
         throw new Error("Phone number is invalid");
       }
       if (!phonenumber) {
@@ -73,7 +76,7 @@ export const Signuppage = () => {
         throw new Error("Password is required");
       }
 
-      console.log(validatePassword(password));
+      // console.log(validatePassword(password));
 
       if (!validatePassword(password)) {
         throw new Error(
@@ -83,10 +86,31 @@ export const Signuppage = () => {
       if (password !== confirmpassword) {
         throw new Error("Passwords do not match");
       }
-      alert("You passed");
+
+      const newData = await axios.post("http://localhost:3002/api/register", {
+        firstname,
+        lastname,
+        country,
+        phonenumber,
+        email,
+        username,
+        password,
+      });
+
+      setToastMessage("Account created successfully");
+      setLoading(false);
+
+      setTimeout(() => {
+        window.location.href = "/sign-in";
+      }, 3500);
     } catch (error) {
-      console.log(error);
-      setToastMessage(error.message);
+      // console.log(error.response.data);
+      setLoading(false);
+      if (error?.response?.data) {
+        setToastMessage(error?.response?.data);
+      } else {
+        setToastMessage(error.message);
+      }
     }
   };
 
@@ -275,14 +299,20 @@ export const Signuppage = () => {
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group">
-                    <button
-                      className="cmn--btn active w-100 btn--round"
-                      onClick={() => {
-                        handleSubmit();
-                      }}
-                    >
-                      Sign Up
-                    </button>
+                    {!loading ? (
+                      <button
+                        className="cmn--btn active w-100 btn--round"
+                        onClick={() => {
+                          handleSubmit();
+                        }}
+                      >
+                        Sign Up
+                      </button>
+                    ) : (
+                      <button className="cmn--btn active w-100 btn--round">
+                        Loading...
+                      </button>
+                    )}
                   </div>
                 </div>
               </form>

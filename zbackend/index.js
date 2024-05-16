@@ -12,15 +12,10 @@ app.use(cors());
 require("dotenv").config();
 
 // Routes
-const userroute = require("./routes/userroute");
-const overtimeroute = require("./routes/overtimeroute");
-
-app.get("/overtimebackend/myapp/api", (req, res) => {
-  res.status(200).send("Welcome to overtime Api");
-});
-
-app.use("/overtimebackend/myapp/api", userroute);
-app.use("/overtimebackend/myapp/api", overtimeroute);
+const welcomeRoute = require("./routes/welcomeroute");
+const generalRoute = require("./routes/generalroute");
+app.use("/api", welcomeRoute);
+app.use("/api", generalRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

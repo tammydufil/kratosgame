@@ -2,44 +2,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Overtimes', {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      requeststaffid: {
+      firstname: {
         type: Sequelize.STRING
       },
-      overtimelist: {
+      lastname: {
         type: Sequelize.STRING
       },
-      requestfirstname: {
+      country: {
         type: Sequelize.STRING
       },
-      requestlastname: {
+      phonenumber: {
         type: Sequelize.STRING
       },
-      department: {
+      email: {
         type: Sequelize.STRING
       },
-      stafflocation: {
+      username: {
         type: Sequelize.STRING
       },
-      status: {
+      password: {
         type: Sequelize.STRING
       },
-      firstapprovalname: {
+      token: {
         type: Sequelize.STRING
       },
-      firstapprovalid: {
-        type: Sequelize.STRING
-      },
-      secondapprovalname: {
-        type: Sequelize.STRING
-      },
-      secondapprovalid: {
+      balance: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -53,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Overtimes');
+    await queryInterface.dropTable('Users');
   }
 };

@@ -50,15 +50,15 @@ export const Homepage = () => {
         style={{ background: "url(assets/images/how/bg2.jpg)" }}
       >
         <div className="container">
-          <div className="row justify-content-center">
+          <div className="row justify-center">
             <div className="col-lg-6">
               <div className="section-header text-center">
                 <h2 className="section-header__title text-2xl">
-                  How to Play Game
+                  How to Get Started
                 </h2>
                 <p>
-                  A casino is a facility for certain types of gambling. Casinos
-                  are often built combined with hotels, resorts.
+                  Enter the game room: Bet, compete, and win against fellow
+                  gamers on our platform. Get started now
                 </p>
               </div>
             </div>
@@ -82,14 +82,14 @@ export const Homepage = () => {
             <div className="col-sm-6 col-md-4 col-lg-4">
               <div className="how-item">
                 <div className="how-item__thumb">
-                  <i className="las la-id-card" />
+                  <i className="las la-money-bill" />{" "}
                   <div className="badge badge--lg badge--round radius-50">
                     02
                   </div>
                 </div>
                 <div className="how-item__content">
                   <a href="profile">
-                    <h4 className="title">Complete you Profile</h4>
+                    <h4 className="title">Fund your account</h4>
                   </a>
                 </div>
               </div>

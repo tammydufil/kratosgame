@@ -2,29 +2,51 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [toastMessage, setToastMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const notify = () => toast(toastMessage);
 
   useEffect(() => {
     if (toastMessage !== "") {
+      console.log(toastMessage);
       notify();
+      setToastMessage("");
     }
   }, [toastMessage]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
+      setLoading(true);
+
       if (!username) {
         throw new Error("Username is required");
       }
       if (!password) {
         throw new Error("Password is required");
       }
+
+      const newData = await axios.post("http://localhost:3002/api/login", {
+        username,
+        password,
+      });
+
+      setToastMessage("Logged in successfully");
+
+      setLoading(false);
     } catch (error) {
-      setToastMessage(error.message);
+      setLoading(false);
+
+      if (error?.response?.data) {
+        setToastMessage(error?.response?.data);
+      } else {
+        setToastMessage(error.message);
+      }
     }
   };
 
@@ -121,14 +143,20 @@ export const Login = () => {
                   </div>
                   <div className="col-12">
                     <div className="form-group">
-                      <button
-                        className="cmn--btn active w-100 btn--round"
-                        onClick={() => {
-                          handleSubmit();
-                        }}
-                      >
-                        Sign In
-                      </button>
+                      {loading ? (
+                        <button className="cmn--btn active w-100 btn--round">
+                          Loading ...
+                        </button>
+                      ) : (
+                        <button
+                          className="cmn--btn active w-100 btn--round"
+                          onClick={() => {
+                            handleSubmit();
+                          }}
+                        >
+                          Sign In
+                        </button>
+                      )}
                     </div>
                   </div>
                   <div className="d-flex flex-wrap flex-sm-nowrap justify-content-between mt-3 ml-2">

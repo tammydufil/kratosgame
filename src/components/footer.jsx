@@ -9,7 +9,7 @@ export const Footer = () => {
       >
         <div className="footer-top px-2">
           <div className="container">
-            <div className="footer-wrapper d-flex flex-wrap align-items-center justify-content-md-between justify-content-center">
+            <div className="footer-wrapper d-flex flex-wrap align-items-center justify-content-md-between md:justify-center">
               <div className="logo mb-3 mb-md-0">
                 <a href="/" className="flex items-center">
                   <img
@@ -41,7 +41,7 @@ export const Footer = () => {
                 </div>
               </div>
               <div className="flex md:flex-col flex-col-reverse">
-                <ul className="footer-links d-flex flex-wrap justify-content-center mt-5 md:mt-0">
+                <ul className="footer-links d-flex flex-wrap md:justify-center mt-5 md:mt-0">
                   <li>
                     <a href="game">Game</a>
                   </li>
