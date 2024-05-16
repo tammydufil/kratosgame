@@ -45,9 +45,7 @@ export const Navbar = () => {
                     <li>
                       <a href="withdraw">Withdraw</a>
                     </li>
-                    <li>
-                      <a href="exchange">Exchange</a>
-                    </li>
+                  
                   </ul>
                   <hr className="d-lg-none" />
                 </li>

@@ -5,7 +5,6 @@ import { Homepage } from "./pages/homepage";
 import { Login } from "./pages/sign-in";
 import { Signuppage } from "./pages/signuppage";
 import { Logout } from "./pages/logout";
-import { Exchange } from "./pages/exchange";
 import { Game } from "./game";
 import { Withdraw } from "./withdraw";
 import { Deposit } from "./deposit";
@@ -27,7 +26,6 @@ function App() {
         <Route path="/sign-in" element={<Login></Login>}></Route>
         <Route path="/sign-up" element={<Signuppage></Signuppage>}></Route>
         <Route path="/logout" element={<Logout></Logout>}></Route>
-        <Route path="/exchange" element={<Exchange></Exchange>}></Route>
         <Route path="/game" element={<Game></Game>}></Route>
         <Route path="/deposit" element={<Deposit></Deposit>}></Route>
         <Route path="/withdraw" element={<Withdraw></Withdraw>}></Route>
