@@ -19,8 +19,8 @@ export const Homepage = () => {
                 Unlimited
               </h1>
               <p class="banner-content__subtitle ">
-                PLAY CASINO AND EARN CRYPTO IN ONLINE. THE ULTIMATE ONLINE
-                CASINO PLATFORM.
+                THE ULTIMATE ONLINE CASINO PLATFORM. PLAY AGAINST PEOPLE ONLINE
+                AND WIN MONEY.
               </p>
               <div class="button-wrapper">
                 <a href="sign-in" class="cmn--btn active btn--lg">
