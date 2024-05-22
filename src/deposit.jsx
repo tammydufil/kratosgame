@@ -5,9 +5,9 @@ import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 
 export const Deposit = () => {
-  const [username, setusername] = useState("");
+  const [Amount, setamount] = useState("");
   const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [fullname, setfullname] = useState("");
   const [country, setCountry] = useState("Nigeria");
   const [phonenumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -164,24 +164,6 @@ export const Deposit = () => {
               >
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
-                    <div htmlFor="fname" className="input-pre-icon">
-                      <i className="las la-user" />
-                    </div>
-                    <input
-                      id="fname"
-                      type="text"
-                      className="form--control form-control style--two"
-                      placeholder="Username"
-                      value={firstname}
-                      onChange={(e) => {
-                        setFirstname(e.target.value);
-                      }}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-6 col-md-6">
-                  <div className="form-group">
                     <div htmlFor="lname" className="input-pre-icon">
                       <i className="las la-user" />
                     </div>
@@ -190,9 +172,9 @@ export const Deposit = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Full Name"
-                      value={lastname}
+                      value={fullname}
                       onChange={(e) => {
-                        setLastname(e.target.value);
+                        setfullname(e.target.value);
                       }}
                       required
                     />
@@ -206,32 +188,15 @@ export const Deposit = () => {
                     <input
                       type="text"
                       className="form--control form-control style--two"
-                      placeholder="Balance"
-                      value={phonenumber}
-                      onChange={(e) => {
-                        setPhoneNumber(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-6 col-md-6">
-                  <div className="form-group">
-                    <div htmlFor="email" className="input-pre-icon">
-                      <i className="las la-envelope" />
-                    </div>
-                    <input
-                      id="email"
-                      type="email"
-                      className="form--control form-control style--two"
-                      placeholder="Withdrawable Balance"
+                      placeholder="Email"
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
-                      required
                     />
                   </div>
                 </div>
+                
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="username" className="input-pre-icon">
@@ -242,9 +207,9 @@ export const Deposit = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Enter Amount"
-                      value={username}
+                      value={Amount}
                       onChange={(e) => {
-                        setusername(e.target.value);
+                        setamount(e.target.value);
                       }}
                       required
                     />

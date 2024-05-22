@@ -5,12 +5,12 @@ import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 
 export const Withdraw = () => {
-  const [username, setusername] = useState("");
+  const [Amount, setamount] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [country, setCountry] = useState("Nigeria");
   const [phonenumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [withdrawable, setwithdrawable] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -161,59 +161,7 @@ export const Withdraw = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}
-              >
-                <div className="col-xl-6 col-md-6">
-                  <div className="form-group">
-                    <div htmlFor="fname" className="input-pre-icon">
-                      <i className="las la-user" />
-                    </div>
-                    <input
-                      id="fname"
-                      type="text"
-                      className="form--control form-control style--two"
-                      placeholder="Username"
-                      value={firstname}
-                      onChange={(e) => {
-                        setFirstname(e.target.value);
-                      }}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-6 col-md-6">
-                  <div className="form-group">
-                    <div htmlFor="lname" className="input-pre-icon">
-                      <i className="las la-user" />
-                    </div>
-                    <input
-                      id="lname"
-                      type="text"
-                      className="form--control form-control style--two"
-                      placeholder="Full Name"
-                      value={lastname}
-                      onChange={(e) => {
-                        setLastname(e.target.value);
-                      }}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-6 col-md-6">
-                <div className="form-group">
-                    <div htmlFor="email" className="input-pre-icon">
-                      <i className="las la-envelope" />
-                    </div>
-                    <input
-                      type="text"
-                      className="form--control form-control style--two"
-                      placeholder="Balance"
-                      value={phonenumber}
-                      onChange={(e) => {
-                        setPhoneNumber(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
+              > 
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="email" className="input-pre-icon">
@@ -221,12 +169,12 @@ export const Withdraw = () => {
                     </div>
                     <input
                       id="email"
-                      type="email"
+                      type="number"
                       className="form--control form-control style--two"
                       placeholder="Withdrawable Balance"
-                      value={email}
+                      value={withdrawable}
                       onChange={(e) => {
-                        setEmail(e.target.value);
+                        setwithdrawable(e.target.value);
                       }}
                       required
                     />
@@ -239,12 +187,12 @@ export const Withdraw = () => {
                     </div>
                     <input
                       id="username"
-                      type="text"
+                      type="number"
                       className="form--control form-control style--two"
                       placeholder="Enter Amount"
-                      value={username}
+                      value={Amount}
                       onChange={(e) => {
-                        setusername(e.target.value);
+                        setamount(e.target.value);
                       }}
                       required
                     />
