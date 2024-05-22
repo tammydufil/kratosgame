@@ -153,9 +153,6 @@ export const Deposit = () => {
                   <img src="assets/images/horuslogo.png" alt="logo" />
                 </a>
               </div>
-              <div className="flex justify-center mb-4">
-                <img className="w-[100px]" src="assets/images/boy.png" alt="" />
-              </div>
               <form
                 className="account__form form row g-4"
                 onSubmit={(e) => {

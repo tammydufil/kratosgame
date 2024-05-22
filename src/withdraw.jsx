@@ -6,7 +6,7 @@ import { Footer } from "./components/footer";
 
 export const Withdraw = () => {
   const [Amount, setamount] = useState("");
-  const [firstname, setFirstname] = useState("");
+  const [fullname, setfullname] = useState("");
   const [lastname, setLastname] = useState("");
   const [country, setCountry] = useState("Nigeria");
   const [phonenumber, setPhoneNumber] = useState("");
@@ -153,15 +153,33 @@ export const Withdraw = () => {
                   <img src="assets/images/horuslogo.png" alt="logo" />
                 </a>
               </div>
-              <div className="flex justify-center mb-4">
-                <img className="w-[100px]" src="assets/images/boy.png" alt="" />
-              </div>
+            {/* <div className="flex justify-center mb-4">
+              <img className="w-[100px]" src="assets/images/boy.png" alt="" />
+            </div> */}
               <form
                 className="account__form form row g-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}
               > 
+              <div className="col-xl-6 col-md-6">
+                  <div className="form-group">
+                    <div htmlFor="email" className="input-pre-icon">
+                      <i className="las la-envelope" />
+                    </div>
+                    <input
+                      id="email"
+                      type="text"
+                      className="form--control form-control style--two"
+                      placeholder="Full name"
+                      value={fullname}
+                      onChange={(e) => {
+                        setfullname(e.target.value);
+                      }}
+                      required
+                    />
+                  </div>
+                </div>
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="email" className="input-pre-icon">
