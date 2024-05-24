@@ -20,7 +20,7 @@ export const Terms = () => {
                 <h2 className="title text-white">Terms &amp; Conditons</h2>
                 <ul className="breadcrumbs d-flex flex-wrap align-items-center justify-content-center">
                   <li>
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>Terms &amp; Conditions</li>
                 </ul>
@@ -36,7 +36,7 @@ export const Terms = () => {
               <div className="col-lg-3">
                 <ul className="privacy-policy-sidebar-menu">
                   <li>
-                    <a href="#overview" className="active nav-link">
+                    <a href="#" className="active nav-link">
                       Introduction
                     </a>
                   </li>
@@ -70,9 +70,7 @@ export const Terms = () => {
               <div className="col-lg-9">
                 <div className="privacy-policy-content">
                   <div className="content-item">
-                    <h4 className="title" id="overview">
-                      Introduction
-                    </h4>
+                    <h4 className="title">Introduction</h4>
                     <ol className="info-list">
                       <li>
                         By using and/or visiting any section (including
@@ -122,7 +120,7 @@ export const Terms = () => {
                         services of Kratosgame and/or any registered customer of
                         Kratosgame.
                       </li>
-                      <li>
+                      <li id="data-collection">
                         Reference to "Username" is reference to any person who
                         has registered on our website by using Phone number.
                       </li>
@@ -139,9 +137,7 @@ export const Terms = () => {
                     </ol>
                   </div>
                   <div className="content-item">
-                    <h4 className="title" id="data-collection">
-                      Privacy Policy
-                    </h4>
+                    <h4 className="title">Privacy Policy</h4>
                     <p>
                       This Privacy Policy is agreed between you and Kratosgame’s
                       corporate entities (‘Kratosgame’, ‘We’, ‘Us’ or ‘Our’ as
@@ -158,18 +154,16 @@ export const Terms = () => {
                       yourself. You also have a right to stop receiving
                       marketing information. You may do this by just removing
                       the tick mark in the My Account(Me) page when you login.{" "}
-                      <br /> <br /> By submitting your information to us and
-                      using the Website you confirm your consent to the use of
-                      your personal information as set out in this Privacy
-                      Policy. If you do not agree with the terms of this Privacy
-                      Policy please do not use the Website or otherwise provide
-                      us with your personal information.
+                      <br /> <br id="cookies" /> By submitting your information
+                      to us and using the Website you confirm your consent to
+                      the use of your personal information as set out in this
+                      Privacy Policy. If you do not agree with the terms of this
+                      Privacy Policy please do not use the Website or otherwise
+                      provide us with your personal information.
                     </p>
                   </div>
-                  <div className="content-item">
-                    <h4 className="title" id="cookies">
-                      Disclosure to Third Parties
-                    </h4>
+                  <div className="content-item" id="data-security">
+                    <h4 className="title">Disclosure to Third Parties</h4>
                     <p>
                       As a policy Kratosgame will not disclose any personal
                       information to anyone other than those employees that need
@@ -179,10 +173,8 @@ export const Terms = () => {
                     </p>
                   </div>
                   <div className="content-item">
-                    <h4 className="title" id="data-security">
-                      Protection of Information
-                    </h4>
-                    <p>
+                    <h4 className="title">Protection of Information</h4>
+                    <p id="overview2">
                       Kratosgame safeguards the security of the data you provide
                       us with physical, electronic, and managerial procedures.
                       Please note that we cannot guarantee that any data
@@ -192,10 +184,8 @@ export const Terms = () => {
                     </p>
                   </div>
                   <div className="content-item">
-                    <h4 className="title" id="overview2">
-                      Access of Information
-                    </h4>
-                    <p>
+                    <h4 className="title">Access of Information</h4>
+                    <p id="overview3">
                       The Management of Kratosgame together with the Fraud Team
                       will have the right to access the submitted personal
                       information relating to the registered players. You always
@@ -212,9 +202,7 @@ export const Terms = () => {
                     </p>
                   </div>
                   <div className="content-item">
-                    <h4 className="title" id="overview3">
-                      Commitment to Privacy
-                    </h4>
+                    <h4 className="title">Commitment to Privacy</h4>
                     <p>
                       To make sure your personal information remains
                       confidential; we communicate these privacy guidelines to

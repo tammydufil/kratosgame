@@ -198,7 +198,7 @@ export const Signuppage = () => {
                         id="fname"
                         type="text"
                         className="form--control form-control style--two"
-                        placeholder="Frist Name"
+                        placeholder="First Name"
                         value={firstname}
                         onChange={(e) => {
                           setFirstname(e.target.value);
