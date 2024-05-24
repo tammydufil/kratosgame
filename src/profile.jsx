@@ -3,6 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { AES, enc } from "crypto-js";
+import { useNavigate } from "react-router";
 
 export const Profile = () => {
   const [username, setusername] = useState("");
@@ -14,8 +16,10 @@ export const Profile = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [user, setUser] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
+
+  const navigate = useNavigate();
   const notify = () => toast(toastMessage);
 
   useEffect(() => {
@@ -25,30 +29,48 @@ export const Profile = () => {
       setToastMessage("");
     }
   }, [toastMessage]);
-
   function validatePassword(password) {
-    // Regular expression to check if password has at least 7 alphanumerics
     const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}$/;
 
-    // Regular expression to check if password contains a symbol
     const symbolRegex = /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/;
 
-    // Regular expression to check if password contains a number
     const numberRegex = /\d/;
 
-    // Check if the password meets all the criteria
-    // const isAlphanumeric = alphanumericRegex.test(password);
     const hasSymbol = symbolRegex.test(password);
     const hasNumber = numberRegex.test(password);
 
-    // Check for space
     const hasSpace = password.includes(" ");
 
     console.log(hasSymbol, hasNumber);
 
-    // Return true if all conditions are met, false otherwise
     return hasSymbol && hasNumber && !hasSpace;
   }
+  let secretKey = import.meta.env.VITE_APP_SECRET;
+  const decryptString = (encryptedString, secretKey) => {
+    try {
+      const bytes = AES.decrypt(encryptedString, secretKey);
+      const jsonString = bytes.toString(enc.Utf8);
+      return JSON.parse(jsonString);
+    } catch (error) {
+      console.error("Decryption error:", error);
+      return null;
+    }
+  };
+  const getUser = () => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const decryptedUser = decryptString(storedUser, secretKey);
+      // console.log(decryptedUser);
+      setUser(decryptedUser);
+    } else {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async () => {
     try {
@@ -172,7 +194,8 @@ export const Profile = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="John"
-                      value={firstname}
+                      disabled
+                      value={user?.firstname?.toUpperCase()}
                       onChange={(e) => {
                         setFirstname(e.target.value);
                       }}
@@ -190,7 +213,8 @@ export const Profile = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Last Name"
-                      value={lastname}
+                      disabled
+                      value={user?.lastname?.toUpperCase()}
                       onChange={(e) => {
                         setLastname(e.target.value);
                       }}
@@ -203,7 +227,10 @@ export const Profile = () => {
                     <div htmlFor="country" className="input-pre-icon">
                       <i className="las la-globe" />
                     </div>
-                    <select className="form-select form--control style--two">
+                    <select
+                      className="form-select form--control style--two"
+                      disabled
+                    >
                       <option>Nigeria</option>
                       {/* <option>Kenya</option>
                       <option>South Africa</option>
@@ -221,7 +248,8 @@ export const Profile = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Phone Number"
-                      value={phonenumber}
+                      disabled
+                      value={user?.phonenumber}
                       onChange={(e) => {
                         setPhoneNumber(e.target.value);
                       }}
@@ -238,7 +266,8 @@ export const Profile = () => {
                       type="email"
                       className="form--control form-control style--two"
                       placeholder="Email"
-                      value={email}
+                      disabled
+                      value={user?.email?.toLowerCase()}
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
@@ -256,7 +285,8 @@ export const Profile = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Username"
-                      value={username}
+                      disabled
+                      value={user?.username?.toLowerCase()}
                       onChange={(e) => {
                         setusername(e.target.value);
                       }}
@@ -271,10 +301,10 @@ export const Profile = () => {
                       <button
                         className="cmn--btn active w-100 btn--round"
                         onClick={() => {
-                          handleSubmit();
+                          navigate("/");
                         }}
                       >
-                        Update details
+                        Back to home
                       </button>
                     ) : (
                       <button className="cmn--btn active w-100 btn--round">

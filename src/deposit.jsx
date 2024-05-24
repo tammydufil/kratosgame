@@ -3,9 +3,11 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { PaystackButton } from "react-paystack";
+import { AES, enc } from "crypto-js";
 
 export const Deposit = () => {
-  const [Amount, setamount] = useState("");
+  const [amount, setamount] = useState("");
   const [firstname, setFirstname] = useState("");
   const [fullname, setfullname] = useState("");
   const [country, setCountry] = useState("Nigeria");
@@ -14,9 +16,37 @@ export const Deposit = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [amountChecks, setAmountChecks] = useState(false);
 
   const [toastMessage, setToastMessage] = useState("");
   const notify = () => toast(toastMessage);
+
+  let secretKey = import.meta.env.VITE_APP_SECRET;
+  const decryptString = (encryptedString, secretKey) => {
+    try {
+      const bytes = AES.decrypt(encryptedString, secretKey);
+      const jsonString = bytes.toString(enc.Utf8);
+      return JSON.parse(jsonString);
+    } catch (error) {
+      console.error("Decryption error:", error);
+      return null;
+    }
+  };
+  const getUser = () => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const decryptedUser = decryptString(storedUser, secretKey);
+      // console.log(decryptedUser);
+      setUser(decryptedUser);
+    } else {
+      navigate("/");
+    }
+  };
+  useEffect(() => {
+    getUser();
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (toastMessage !== "") {
@@ -25,6 +55,14 @@ export const Deposit = () => {
       setToastMessage("");
     }
   }, [toastMessage]);
+
+  useEffect(() => {
+    if (Number(amount) < 200) {
+      setAmountChecks(false);
+    } else {
+      setAmountChecks(true);
+    }
+  }, [amount]);
 
   function validatePassword(password) {
     // Regular expression to check if password has at least 7 alphanumerics
@@ -114,10 +152,46 @@ export const Deposit = () => {
     }
   };
 
+  const handlePayment = async () => {
+    try {
+      const newbalance = await axios.post("http://localhost:3002/api/pay", {
+        id: user?.id,
+        amount,
+      });
+      setToastMessage(`₦${amount} Deposit Successful`);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 4200);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: user?.email,
+    amount: amount * 100,
+    publicKey: import.meta.env.VITE_APP_KEY,
+  };
+  const handlePaystackSuccessAction = (reference) => {
+    handlePayment();
+  };
+
+  const handlePaystackCloseAction = () => {
+    console.log("closed");
+  };
+
+  const componentProps = {
+    ...config,
+    text: "Proceed to payment",
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
   return (
     <div>
       <Navbar></Navbar>
-      {/* inner hero section start */}
+
       <section
         className="inner-banner bg_img"
         style={{
@@ -169,7 +243,8 @@ export const Deposit = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Full Name"
-                      value={fullname}
+                      disabled
+                      value={`${user?.lastname?.toUpperCase()} ${user?.firstname?.toUpperCase()} `}
                       onChange={(e) => {
                         setfullname(e.target.value);
                       }}
@@ -178,7 +253,7 @@ export const Deposit = () => {
                   </div>
                 </div>
                 <div className="col-xl-6 col-md-6">
-                <div className="form-group">
+                  <div className="form-group">
                     <div htmlFor="email" className="input-pre-icon">
                       <i className="las la-envelope" />
                     </div>
@@ -186,14 +261,15 @@ export const Deposit = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Email"
-                      value={email}
+                      value={`${user?.email?.toLowerCase()} `}
+                      disabled
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
                     />
                   </div>
                 </div>
-                
+
                 <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="username" className="input-pre-icon">
@@ -204,28 +280,42 @@ export const Deposit = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Enter Amount"
-                      value={Amount}
+                      value={amount}
                       onChange={(e) => {
                         setamount(e.target.value);
                       }}
                       required
                     />
                   </div>
+                  <div className="flex justify-start">
+                    <h4 className="text-red-200 vibrate-1 mt-2">
+                      Minimum Amount is ₦200
+                    </h4>
+                  </div>
                 </div>
 
                 <div className="col-lg-12">
                   <div className="form-group">
                     {!loading ? (
-                      <button
-                        className="cmn--btn active w-100 btn--round"
-                        onClick={() => {
-                          handleSubmit();
-                        }}
-                      >
-                        Submit
-                      </button>
+                      amountChecks ? (
+                        <PaystackButton
+                          {...componentProps}
+                          className="cmn--btn active w-100 btn--round"
+                        />
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setToastMessage(
+                              "Amount should be greater than 200"
+                            );
+                          }}
+                          className="cmn--btn active w-100 btn--round !bg-slate-400"
+                        >
+                          Amount should be greater than 200
+                        </button>
+                      )
                     ) : (
-                      <button className="cmn--btn active w-100 btn--round">
+                      <button className="cmn--btn active w-100 btn--round ">
                         Loading...
                       </button>
                     )}
@@ -243,4 +333,3 @@ export const Deposit = () => {
     </div>
   );
 };
-

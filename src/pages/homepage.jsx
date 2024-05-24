@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
+import { AES, enc } from "crypto-js";
 
 export const Homepage = () => {
+  const [user, setUser] = useState(null);
+
+  let secretKey = import.meta.env.VITE_APP_SECRET;
+
+  const decryptString = (encryptedString, secretKey) => {
+    try {
+      const bytes = AES.decrypt(encryptedString, secretKey);
+      const jsonString = bytes.toString(enc.Utf8);
+      return JSON.parse(jsonString);
+    } catch (error) {
+      console.error("Decryption error:", error);
+      return null;
+    }
+  };
+  const getUser = () => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const decryptedUser = decryptString(storedUser, secretKey);
+      console.log(decryptedUser);
+      setUser(decryptedUser);
+    }
+  };
+  useEffect(() => {
+    getUser();
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Navbar></Navbar>
@@ -24,11 +52,13 @@ export const Homepage = () => {
               </p>
               <div class="button-wrapper">
                 <a href="sign-in" class="cmn--btn active btn--lg">
-                  <i class="las la-play"></i> Play Now
+                  <i class="las la-play"></i>Our Games
                 </a>
-                <a href="sign-up" class="cmn--btn btn--lg">
-                  Sign Up
-                </a>
+                {!user && (
+                  <a href="sign-up" class="cmn--btn btn--lg">
+                    Sign Up
+                  </a>
+                )}
               </div>
               <img src="assets/images/banner/card.png" alt="" class="shape1" />
             </div>

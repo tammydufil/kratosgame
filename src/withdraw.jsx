@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { AES, enc } from "crypto-js";
 
 export const Withdraw = () => {
   const [Amount, setamount] = useState("");
@@ -14,9 +15,37 @@ export const Withdraw = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [balance, setBalance] = useState(0);
 
   const [toastMessage, setToastMessage] = useState("");
   const notify = () => toast(toastMessage);
+  let secretKey = import.meta.env.VITE_APP_SECRET;
+  const decryptString = (encryptedString, secretKey) => {
+    try {
+      const bytes = AES.decrypt(encryptedString, secretKey);
+      const jsonString = bytes.toString(enc.Utf8);
+      return JSON.parse(jsonString);
+    } catch (error) {
+      console.error("Decryption error:", error);
+      return null;
+    }
+  };
+  const getUser = () => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const decryptedUser = decryptString(storedUser, secretKey);
+      // console.log(decryptedUser);
+      setUser(decryptedUser);
+      console.log(decryptedUser);
+    } else {
+      navigate("/");
+    }
+  };
+  useEffect(() => {
+    getUser();
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (toastMessage !== "") {
@@ -27,28 +56,39 @@ export const Withdraw = () => {
   }, [toastMessage]);
 
   function validatePassword(password) {
-    // Regular expression to check if password has at least 7 alphanumerics
     const alphanumericRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}$/;
 
-    // Regular expression to check if password contains a symbol
     const symbolRegex = /[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/;
 
-    // Regular expression to check if password contains a number
     const numberRegex = /\d/;
 
-    // Check if the password meets all the criteria
-    // const isAlphanumeric = alphanumericRegex.test(password);
     const hasSymbol = symbolRegex.test(password);
     const hasNumber = numberRegex.test(password);
 
-    // Check for space
     const hasSpace = password.includes(" ");
 
     console.log(hasSymbol, hasNumber);
 
-    // Return true if all conditions are met, false otherwise
     return hasSymbol && hasNumber && !hasSpace;
   }
+  const getBalance = async () => {
+    try {
+      const newbalance = await axios.post(
+        "http://localhost:3002/api/getbalance",
+        {
+          id: user?.id,
+        }
+      );
+
+      setBalance(newbalance.data || 0);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getBalance();
+  }, [user]);
 
   const handleSubmit = async () => {
     try {
@@ -153,7 +193,7 @@ export const Withdraw = () => {
                   <img src="assets/images/horuslogo.png" alt="logo" />
                 </a>
               </div>
-            {/* <div className="flex justify-center mb-4">
+              {/* <div className="flex justify-center mb-4">
               <img className="w-[100px]" src="assets/images/boy.png" alt="" />
             </div> */}
               <form
@@ -161,8 +201,8 @@ export const Withdraw = () => {
                 onSubmit={(e) => {
                   e.preventDefault();
                 }}
-              > 
-              <div className="col-xl-6 col-md-6">
+              >
+                <div className="col-xl-6 col-md-6">
                   <div className="form-group">
                     <div htmlFor="email" className="input-pre-icon">
                       <i className="las la-envelope" />
@@ -172,10 +212,11 @@ export const Withdraw = () => {
                       type="text"
                       className="form--control form-control style--two"
                       placeholder="Full name"
-                      value={fullname}
+                      value={`${user?.lastname?.toUpperCase()} ${user?.firstname?.toUpperCase()} `}
                       onChange={(e) => {
                         setfullname(e.target.value);
                       }}
+                      disabled
                       required
                     />
                   </div>
@@ -186,14 +227,15 @@ export const Withdraw = () => {
                       <i className="las la-envelope" />
                     </div>
                     <input
-                      id="email"
-                      type="number"
+                      id="text"
+                      type="text"
                       className="form--control form-control style--two"
                       placeholder="Withdrawable Balance"
-                      value={withdrawable}
-                      onChange={(e) => {
-                        setwithdrawable(e.target.value);
-                      }}
+                      disabled
+                      value={`₦${balance}`}
+                      // onChange={(e) => {
+                      //   setwithdrawable(e.target.value);
+                      // }}
                       required
                     />
                   </div>
